@@ -4,3 +4,11 @@
 .controls {
     display: flex;
 }
+video::cue {
+    padding: 20px;
+    opacity: 0.8;
+    font-size: 24px;
+    color: green;
+    font-weight: bold;
+    ruby-position: under;
+  }
