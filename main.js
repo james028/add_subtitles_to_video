@@ -1,5 +1,5 @@
 let video = document.querySelector("video");
-
+    
 video.addEventListener("loadedmetadata", () => {
     let track = video.addTextTrack('subtitles', 'English', 'en');
 
@@ -13,20 +13,13 @@ video.addEventListener("loadedmetadata", () => {
     track.addCue(new VTTCue(9.6, 14.8, "My <c.small>small classname</c> Cue"));
     track.addCue(new VTTCue(15, 36, "My <c.customstyle>custom classname</c> Cue"));
 
-
-    //for (var i = 0; i < video.textTracks.length; i++) {
-        let subtitles = document.getElementById("subtitles");
-
-        //subtitles.addEventListener("click", () => {
-                //track.mode.classList.add("hide");
-                //console.log("sub");
-        //});
-        subtitles.onclick = function() {
-            track.mode.classList.add("hide");
-                console.log("sub");
-        }
-    //}
     
+    //toggle subtitles
+    let subtitles = document.getElementById("subtitles");
+    
+    subtitles.addEventListener("click", () => {
+            track.mode = (track.mode == "hidden" ? "showing" : "hidden");
+    });
     
    
     //button play/pause
@@ -63,7 +56,6 @@ video.addEventListener("loadedmetadata", () => {
                 else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
                 else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
                 else if (document.msExitFullscreen) document.msExitFullscreen();
-                setFullscreenData(false);
             }
             else {
                 if (videoContainer.requestFullscreen) videoContainer.requestFullscreen();
@@ -72,7 +64,6 @@ video.addEventListener("loadedmetadata", () => {
                     video.webkitRequestFullScreen();
                 }
                 else if (videoContainer.msRequestFullscreen) videoContainer.msRequestFullscreen();
-                setFullscreenData(true);
             }
         }
 
@@ -82,4 +73,5 @@ video.addEventListener("loadedmetadata", () => {
             handleFullscreen();
         });
  });
+
 
