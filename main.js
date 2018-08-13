@@ -1,3 +1,5 @@
+(() => {
+
 let video = document.querySelector("video");
     
 video.addEventListener("loadedmetadata", () => {
@@ -31,11 +33,13 @@ video.addEventListener("loadedmetadata", () => {
 
     let stop = document.getElementById("stop");
 
+    //stop
     stop.addEventListener("click", () => {
         video.pause();
         video.currentTime = 0;
     });
 
+    //mute/unmute
     let mute = document.getElementById("mute");
 
     mute.addEventListener("click", () => {
@@ -72,6 +76,22 @@ video.addEventListener("loadedmetadata", () => {
         fs.addEventListener("click", () => {
             handleFullscreen();
         });
- });
 
+        //progress bar
+        let progress = document.getElementById('progress');
+        let progressBar = document.getElementById('progress-bar');
+        
+        video.addEventListener('timeupdate', () => {
+            if (!progress.getAttribute('max')) progress.setAttribute('max', video.duration);
+            progress.value = video.currentTime;
+            progressBar.style.width = Math.floor((video.currentTime / video.duration) * 100) + '%';
+        });
+
+        //after click in progress bar
+        progress.addEventListener('click', function(e) {
+            let pos = (e.pageX  - (this.offsetLeft + this.offsetParent.offsetLeft + this.offsetParent.offsetParent.offsetLeft)) / this.offsetWidth;
+            video.currentTime = pos * video.duration;
+        });
+ });
+})();
 

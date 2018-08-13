@@ -1,14 +1,69 @@
-.hide {
-    display: none;
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #C73450;
+}
+#videoContainer {
+    margin: 0 auto;
+    text-align: center;
+}
+.vid {
+    margin-top: 150px;
+    border: 1px solid #fff;
 }
 .controls {
+    position: relative;
+}
+.controls-icons {
     display: flex;
+    justify-content: center;
 }
 video::cue {
-    padding: 20px;
+    padding: 5px;
     opacity: 0.8;
     font-size: 24px;
-    color: green;
-    font-weight: bold;
-    ruby-position: under;
+    color: #fff;
   }
+.controls-icons button {
+    background: #fefefe;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 6px 10px 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 15px;
+}
+.controls-icons button:hover {
+    background: #f0f0f0;
+    border: 1px solid #bbb;
+}
+.progress-length {
+    height: 30px;
+    margin: 10px auto;  
+    width: 37%; 
+}
+
+
+
+@media (max-width: 600px) {
+    .vid {
+        width: 100%;
+        margin: 150px 10px 10px;
+    }
+    .controls-icons button {
+        padding: 3px 5px 3px 5px;
+        margin-right: 8px;
+    }
+    .progress-length {
+        width: 95%;
+    }
+    .controls-icons button:first-child {
+        margin-left: 25px;
+    }
+    video::cue {
+        font-size: 18px;
+      }
+}
